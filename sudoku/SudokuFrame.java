@@ -25,7 +25,7 @@ public class SudokuFrame extends JFrame {
 		this.setMinimumSize(new Dimension(700,560));
 		
 		JMenuBar menuBar = new JMenuBar();
-		JMenu file = new JMenu("JEUX");
+		JMenu file = new JMenu("Jeux");
 		JMenu newGame = new JMenu("Nouveau jeu");
 		JMenuItem sixBySixGame = new JMenuItem("6 x 6");
 		sixBySixGame.addActionListener(new NewGameListener(SudokuPuzzleType.SIXBYSIX,30));
