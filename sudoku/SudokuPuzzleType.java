@@ -1,10 +1,10 @@
 package sudoku;
 
 public enum SudokuPuzzleType {
-	SIXBYSIX(6,6,3,2,new String[] {"1","2","3","4","5","6"},"6 By 6 Game"),
+	SIXBYSIX(6,6,3,3,new String[] {"1","2","3","4","5","6","7","8","9"},"6 By 6 Game"),
 	NINEBYNINE(9,9,3,3,new String[] {"1","2","3","4","5","6","7","8","9"},"9 By 9 Game"),
-	TWELVEBYTWELVE(12,12,4,3,new String[] {"1","2","3","4","5","6","7","8","9","A","B","C"},"12 By 12 Game"),
-	SIXTEENBYSIXTEEN(16,16,4,4,new String[] {"1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G"},"16 By 16 Game");
+	TWELVEBYTWELVE(9,9,3,3,new String[] {"1","2","3","4","5","6","7","8","9"},"12 By 12 Game");
+	//SIXTEENBYSIXTEEN(16,16,4,4,new String[] {"1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G"},"16 By 16 Game");
 	
 	private final int rows;
 	private final int columns;

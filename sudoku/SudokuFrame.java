@@ -31,7 +31,7 @@ public class SudokuFrame extends JFrame {
 		sixBySixGame.addActionListener(new NewGameListener(SudokuPuzzleType.SIXBYSIX,30));
 		JMenuItem nineByNineGame = new JMenuItem("Moyen (9 x 9)");
 		nineByNineGame.addActionListener(new NewGameListener(SudokuPuzzleType.NINEBYNINE,26));
-		JMenuItem twelveByTwelveGame = new JMenuItem("Difficile (12 x 12)");
+		JMenuItem twelveByTwelveGame = new JMenuItem("Difficile (9 x 9)");
 		twelveByTwelveGame.addActionListener(new NewGameListener(SudokuPuzzleType.TWELVEBYTWELVE,20));
 		
 		/*
