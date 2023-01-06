@@ -27,11 +27,11 @@ public class SudokuFrame extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		JMenu file = new JMenu("Jeux");
 		JMenu newGame = new JMenu("Nouveau jeu");
-		JMenuItem sixBySixGame = new JMenuItem("6 x 6");
+		JMenuItem sixBySixGame = new JMenuItem("Facile (6 x 6)");
 		sixBySixGame.addActionListener(new NewGameListener(SudokuPuzzleType.SIXBYSIX,30));
-		JMenuItem nineByNineGame = new JMenuItem("9 x 9");
+		JMenuItem nineByNineGame = new JMenuItem("Moyen (9 x 9)");
 		nineByNineGame.addActionListener(new NewGameListener(SudokuPuzzleType.NINEBYNINE,26));
-		JMenuItem twelveByTwelveGame = new JMenuItem("12 x 12");
+		JMenuItem twelveByTwelveGame = new JMenuItem("Difficile (12 x 12)");
 		twelveByTwelveGame.addActionListener(new NewGameListener(SudokuPuzzleType.TWELVEBYTWELVE,20));
 		
 		/*
