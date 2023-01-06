@@ -20,7 +20,7 @@ public class SudokuGenerator {
 			notUsedValidValues.remove(randomValue);
 		}
 		
-		//Bottleneck here need to improve this so that way 16x16 puzzles can be generated
+		//Le problème est qu'il faut l'améliorer afin de pouvoir générer des puzzles 16x16.
 		backtrackSudokuSolver(0, 0, copy);
 		
 		int numberOfValuesToKeep = (int)(0.22222*(copy.getNumRows()*copy.getNumRows()));
@@ -48,29 +48,29 @@ public class SudokuGenerator {
 	 * Responses: Erroneous data 
 	 */
     private boolean backtrackSudokuSolver(int r,int c,SudokuPuzzle puzzle) {
-    	//If the move is not valid return false
+    	//Si le déplacement n'est pas valide, retournez false
 		if(!puzzle.inRange(r,c)) {
 			return false;
 		}
 		
-		//if the current space is empty
+		//si l'espace actuel est vide
 		if(puzzle.isSlotAvailable(r, c)) {
 			
-			//loop to find the correct value for the space
+			//boucle pour trouver la valeur correcte de l'espace
 			for(int i = 0;i < puzzle.getValidValues().length;i++) {
 				
-				//if the current number works in the space
+				//si le numéro actuel fonctionne dans l'espace
 				if(!puzzle.numInRow(r, puzzle.getValidValues()[i]) && !puzzle.numInCol(c,puzzle.getValidValues()[i]) && !puzzle.numInBox(r,c,puzzle.getValidValues()[i])) {
 					
-					//make the move
+					//passez à l'action
 					puzzle.makeMove(r, c, puzzle.getValidValues()[i], true);
 					
-					//if puzzle solved return true
+					//si le puzzle est résolu, retournez true
 					if(puzzle.boardFull()) {
 						return true;
 					}
 					
-					//go to next move
+					//passer à l'étape suivante
 					if(r == puzzle.getNumRows() - 1) {
 						if(backtrackSudokuSolver(0,c + 1,puzzle)) return true;
 					} else {
@@ -80,7 +80,7 @@ public class SudokuGenerator {
 			}
 		}
 		
-		//if the current space is not empty
+		//si l'espace actuel n'est pas vide
 		else {
 			//got to the next move
 			if(r == puzzle.getNumRows() - 1) {
@@ -90,10 +90,10 @@ public class SudokuGenerator {
 			}
 		}
 		
-		//undo move
+		//Annuler le déplacement
 		puzzle.makeSlotEmpty(r, c);
 		
-		//backtrack
+		//retour en arrière
 		return false;
 	}
 }

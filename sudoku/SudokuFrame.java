@@ -35,7 +35,7 @@ public class SudokuFrame extends JFrame {
 		twelveByTwelveGame.addActionListener(new NewGameListener(SudokuPuzzleType.TWELVEBYTWELVE,20));
 		
 		/*
-		 * need to include this when solving algorithm is improved
+		 * nécessité d'inclure ceci lorsque l'algorithme de résolution est amélioré
 		 JMenuItem sixteenBySizteenGame = new JMenuItem("16 By 16 Game");
 		sixteenBySizteenGame.addActionListener(new NewGameListener(SudokuPuzzleType.SIXTEENBYSIXTEEN,16));
 		*/

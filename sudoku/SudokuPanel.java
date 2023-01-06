@@ -81,7 +81,7 @@ public class SudokuPanel extends JPanel {
 				g2d.drawLine(x, 0, x, usedHeight);
 			}
 		}
-		//this will draw the right most line
+		//ceci dessinera la ligne la plus à droite
 		//g2d.drawLine(usedWidth - 1, 0, usedWidth - 1,usedHeight);
 		for(int y = 0;y <= usedHeight;y+=slotHeight) {
 			if((y/slotHeight) % puzzle.getBoxHeight() == 0) {
