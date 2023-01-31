@@ -1,3 +1,4 @@
+// Une énumération qui définit les différents types de puzzles Sudoku.
 package sudoku;
 
 public enum SudokuPuzzleType {

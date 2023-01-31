@@ -1,3 +1,7 @@
+/**
+ * C'est un JPanel qui dessine un puzzle Sudoku et permet à l'utilisateur de sélectionner une fente
+ * dans le puzzle
+ */
 package sudoku;
 
 import java.awt.BasicStroke;

@@ -1,3 +1,6 @@
+/**
+ * C'est une classe qui représente un puzzle Sudoku
+ */
 package sudoku;
 
 public class SudokuPuzzle {

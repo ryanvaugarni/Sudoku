@@ -1,3 +1,7 @@
+/**
+ * C'est un JFrame qui contient un SudokuPanel et un JPanel qui contient des boutons pour chacune des
+ * valeurs valides pour le puzzle
+ */
 package sudoku;
 
 import java.awt.Dimension;

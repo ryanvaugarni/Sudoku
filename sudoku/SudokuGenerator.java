@@ -1,3 +1,6 @@
+/**
+ * Il génère un puzzle sudoku aléatoire
+ */
 package sudoku;
 
 import java.util.ArrayList;

@@ -1,3 +1,6 @@
+/**
+ * C'est un SudokuPuzzle qui a un tableau qui est initialisé au puzzle que nous voulons tester
+ */
 package sudoku;
 
 import org.junit.Assert;
