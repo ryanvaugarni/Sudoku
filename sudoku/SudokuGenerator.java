@@ -9,14 +9,35 @@ import java.util.List;
 import java.util.Random;
 
 public class SudokuGenerator {
+	private Random randomGenerator;
+	private List<String> notUsedValidValues;
+	
+	public SudokuGenerator() {
+		randomGenerator = new Random();
+		notUsedValidValues = new ArrayList<String>();
+	}
+	
+	public Random getRandomGenerator() {
+		return randomGenerator;
+	}
 
+	public void setRandomGenerator(Random randomGenerator) {
+		this.randomGenerator = randomGenerator;
+	}
+
+	public List<String> getNotUsedValidValues() {
+		return notUsedValidValues;
+	}
+
+	public void setNotUsedValidValues(List<String> notUsedValidValues) {
+		this.notUsedValidValues = notUsedValidValues;
+	}
+	
 	public SudokuPuzzle generateRandomSudoku(SudokuPuzzleType puzzleType) {
 		SudokuPuzzle puzzle = new SudokuPuzzle(puzzleType.getRows(), puzzleType.getColumns(), puzzleType.getBoxWidth(), puzzleType.getBoxHeight(), puzzleType.getValidValues());
 		SudokuPuzzle copy = new SudokuPuzzle(puzzle);
 		
-		Random randomGenerator = new Random();
-		
-		List<String> notUsedValidValues =  new ArrayList<String>(Arrays.asList(copy.getValidValues()));
+		notUsedValidValues =  new ArrayList<String>(Arrays.asList(copy.getValidValues()));
 		for(int r = 0;r < copy.getNumRows();r++) {
 			int randomValue = randomGenerator.nextInt(notUsedValidValues.size());
 			copy.makeMove(r, 0, notUsedValidValues.get(randomValue), true);
@@ -44,7 +65,7 @@ public class SudokuGenerator {
 	/**
 	 * Solves the sudoku puzzle
 	 * Pre-cond: r = 0,c = 0
-	 * Post-cond: solved puzzle
+	 * Post-cond
 	 * @param r: the current row
 	 * @param c: the current column
 	 * @return valid move or not or done
