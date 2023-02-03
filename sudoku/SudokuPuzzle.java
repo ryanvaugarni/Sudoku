@@ -5,39 +5,58 @@ package sudoku;
 
 public class SudokuPuzzle {
 
-	protected String [][] board;
-	// Table to determine if a slot is mutable
-	protected boolean [][] mutable;
-	private final int ROWS;
-	private final int COLUMNS;
-	private final int BOXWIDTH;
-	private final int BOXHEIGHT;
-	private final String [] VALIDVALUES;
-	
-	public SudokuPuzzle(int rows,int columns,int boxWidth,int boxHeight,String [] validValues) {
-		this.ROWS = rows;
-		this.COLUMNS = columns;
-		this.BOXWIDTH = boxWidth;
-		this.BOXHEIGHT = boxHeight;
-		this.VALIDVALUES = validValues;
-		this.board = new String[ROWS][COLUMNS];
-		this.mutable = new boolean[ROWS][COLUMNS];
-		initializeBoard();
-		initializeMutableSlots();
-	}
-	
-	public SudokuPuzzle(SudokuPuzzle puzzle) {
-		this.ROWS = puzzle.ROWS;
-		this.COLUMNS = puzzle.COLUMNS;
-		this.BOXWIDTH = puzzle.BOXWIDTH;
-		this.BOXHEIGHT = puzzle.BOXHEIGHT;
-		this.VALIDVALUES = puzzle.VALIDVALUES;
-		this.board = new String[ROWS][COLUMNS];
-		for(int r = 0;r < ROWS;r++) {
-			for(int c = 0;c < COLUMNS;c++) {
-				board[r][c] = puzzle.board[r][c];
-			}
+	// Grille qui représente le puzzle
+protected String [][] board;
+// Table pour déterminer si un emplacement est modifiable
+protected boolean [][] mutable;
+// Nombre de lignes dans la grille
+private final int ROWS;
+// Nombre de colonnes dans la grille
+private final int COLUMNS;
+// Largeur d'une boîte (groupement de cellules dans la grille)
+private final int BOXWIDTH;
+// Hauteur d'une boîte (groupement de cellules dans la grille)
+private final int BOXHEIGHT;
+// Valeurs valides pour remplir la grille
+private final String [] VALIDVALUES;
+
+/**
+ * Constructeur qui prend en entrée les dimensions de la grille, les dimensions d'une boîte, et les valeurs valides pour la grille
+ * @param rows nombre de lignes dans la grille
+ * @param columns nombre de colonnes dans la grille
+ * @param boxWidth largeur d'une boîte (groupement de cellules dans la grille)
+ * @param boxHeight hauteur d'une boîte (groupement de cellules dans la grille)
+ * @param validValues valeurs valides pour remplir la grille
+ */
+public SudokuPuzzle(int rows,int columns,int boxWidth,int boxHeight,String [] validValues) {
+	this.ROWS = rows;
+	this.COLUMNS = columns;
+	this.BOXWIDTH = boxWidth;
+	this.BOXHEIGHT = boxHeight;
+	this.VALIDVALUES = validValues;
+	this.board = new String[ROWS][COLUMNS];
+	this.mutable = new boolean[ROWS][COLUMNS];
+	// Initialise la grille
+	initializeBoard();
+	// Initialise les emplacements modifiables
+	initializeMutableSlots();
+}
+/**
+ * Constructeur de copie pour une instance de la classe SudokuPuzzle
+ * @param puzzle instance de la classe SudokuPuzzle à copier
+ */
+public SudokuPuzzle(SudokuPuzzle puzzle) {
+	this.ROWS = puzzle.ROWS;
+	this.COLUMNS = puzzle.COLUMNS;
+	this.BOXWIDTH = puzzle.BOXWIDTH;
+	this.BOXHEIGHT = puzzle.BOXHEIGHT;
+	this.VALIDVALUES = puzzle.VALIDVALUES;
+	this.board = new String[ROWS][COLUMNS];
+	for(int r = 0;r < ROWS;r++) {
+		for(int c = 0;c < COLUMNS;c++) {
+			board[r][c] = puzzle.board[r][c];
 		}
+	}
 		this.mutable = new boolean[ROWS][COLUMNS];
 		for(int r = 0;r < ROWS;r++) {
 			for(int c = 0;c < COLUMNS;c++) {
