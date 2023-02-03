@@ -37,7 +37,7 @@ public class SudokuGenerator {
 		this.notUsedValidValues = notUsedValidValues;
 	}
 	// Cette méthode génère un puzzle de sudoku aléatoirement en utilisant un certain nombre de stratégies.
-public SudokuPuzzle generateRandomSudoku(SudokuPuzzleType puzzleType) {
+	public SudokuPuzzle generateRandomSudoku(SudokuPuzzleType puzzleType) {
 	// Créer un nouveau puzzle de sudoku en utilisant les informations fournies dans puzzleType
 	SudokuPuzzle puzzle = new SudokuPuzzle(puzzleType.getRows(), 
 										   puzzleType.getColumns(), 
