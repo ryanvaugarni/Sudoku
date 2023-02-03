@@ -8,60 +8,77 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+// Classe qui génère un sudoku aléatoirement
 public class SudokuGenerator {
-	private Random randomGenerator;
-	private List<String> notUsedValidValues;
 	
+	// Générateur de nombre aléatoire
+	private Random randomGenerator;
+	// Liste de valeurs valides non utilisées
+	private List<String> notUsedValidValues;
+	// Constructeur par défaut qui initialise le générateur de nombres aléatoires et la liste de valeurs valides non utilisées
 	public SudokuGenerator() {
 		randomGenerator = new Random();
 		notUsedValidValues = new ArrayList<String>();
 	}
-	
+	// Retourne le générateur de nombres aléatoires
 	public Random getRandomGenerator() {
 		return randomGenerator;
 	}
-
+	// Définit le générateur de nombres aléatoires
 	public void setRandomGenerator(Random randomGenerator) {
 		this.randomGenerator = randomGenerator;
 	}
-
+	// Retourne la liste de valeurs valides non utilisées
 	public List<String> getNotUsedValidValues() {
 		return notUsedValidValues;
 	}
-
+	// Définit la liste de valeurs valides non utilisées
 	public void setNotUsedValidValues(List<String> notUsedValidValues) {
 		this.notUsedValidValues = notUsedValidValues;
 	}
-	
-	public SudokuPuzzle generateRandomSudoku(SudokuPuzzleType puzzleType) {
-		SudokuPuzzle puzzle = new SudokuPuzzle(puzzleType.getRows(), puzzleType.getColumns(), puzzleType.getBoxWidth(), puzzleType.getBoxHeight(), puzzleType.getValidValues());
-		SudokuPuzzle copy = new SudokuPuzzle(puzzle);
-		
-		notUsedValidValues =  new ArrayList<String>(Arrays.asList(copy.getValidValues()));
-		for(int r = 0;r < copy.getNumRows();r++) {
-			int randomValue = randomGenerator.nextInt(notUsedValidValues.size());
-			copy.makeMove(r, 0, notUsedValidValues.get(randomValue), true);
-			notUsedValidValues.remove(randomValue);
-		}
-		
-		//Le problème est qu'il faut l'améliorer afin de pouvoir générer des puzzles 16x16.
-		backtrackSudokuSolver(0, 0, copy);
-		
-		int numberOfValuesToKeep = (int)(0.22222*(copy.getNumRows()*copy.getNumRows()));
-		
-		for(int i = 0;i < numberOfValuesToKeep;) {
-			int randomRow = randomGenerator.nextInt(puzzle.getNumRows());
-			int randomColumn = randomGenerator.nextInt(puzzle.getNumColumns());
-			
-			if(puzzle.isSlotAvailable(randomRow, randomColumn)) {
-				puzzle.makeMove(randomRow, randomColumn, copy.getValue(randomRow, randomColumn), false);
-				i++;
-			}
-		}
-		
-		return puzzle;
+	// Cette méthode génère un puzzle de sudoku aléatoirement en utilisant un certain nombre de stratégies.
+public SudokuPuzzle generateRandomSudoku(SudokuPuzzleType puzzleType) {
+	// Créer un nouveau puzzle de sudoku en utilisant les informations fournies dans puzzleType
+	SudokuPuzzle puzzle = new SudokuPuzzle(puzzleType.getRows(), 
+										   puzzleType.getColumns(), 
+										   puzzleType.getBoxWidth(), 
+										   puzzleType.getBoxHeight(), 
+										   puzzleType.getValidValues());
+	// Créer une copie du puzzle qui sera utilisée pour la résolution
+	SudokuPuzzle copy = new SudokuPuzzle(puzzle);
+	// Initialiser la liste de valeurs valides qui n'ont pas été utilisées
+	notUsedValidValues =  new ArrayList<String>(Arrays.asList(copy.getValidValues()));
+	// Boucle à travers les lignes du puzzle copié
+	for(int r = 0;r < copy.getNumRows();r++) {
+		// Sélectionner une valeur valide aléatoire dans la liste
+		int randomValue = randomGenerator.nextInt(notUsedValidValues.size());
+		// Ajouter la valeur sélectionnée à la première colonne de la ligne actuelle
+		copy.makeMove(r, 0, notUsedValidValues.get(randomValue), true);
+		// Supprimer la valeur sélectionnée de la liste
+		notUsedValidValues.remove(randomValue);
 	}
+	// Résoudre le puzzle copié en utilisant la méthode de backtracking
+	backtrackSudokuSolver(0, 0, copy);
 	
+	// Calculer le nombre de valeurs à conserver dans le puzzle final
+	int numberOfValuesToKeep = (int)(0.22222*(copy.getNumRows()*copy.getNumRows()));
+	
+	// Boucle pour ajouter des valeurs aléatoires à partir du puzzle copié au puzzle final
+	for(int i = 0;i < numberOfValuesToKeep;) {
+		// Sélectionner une ligne et une colonne aléatoirement
+		int randomRow = randomGenerator.nextInt(puzzle.getNumRows());
+		int randomColumn = randomGenerator.nextInt(puzzle.getNumColumns());
+		
+		// Vérifier si la case est disponible dans le puzzle final
+		if(puzzle.isSlotAvailable(randomRow, randomColumn)) {
+			// Ajouter la valeur correspondante à partir du puzzle copié au puzzle final
+			puzzle.makeMove(randomRow, randomColumn, copy.getValue(randomRow, randomColumn), false);
+			i++;
+		}
+	}
+	// Retourner le puzzle final
+	return puzzle;
+}
 	/**
 	 * Solves the sudoku puzzle
 	 * Pre-cond: r = 0,c = 0
@@ -113,7 +130,6 @@ public class SudokuGenerator {
 				return backtrackSudokuSolver(r + 1,c,puzzle);
 			}
 		}
-		
 		//Annuler le déplacement
 		puzzle.makeSlotEmpty(r, c);
 		
